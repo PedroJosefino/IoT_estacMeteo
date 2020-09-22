@@ -1,0 +1,1173 @@
+[
+    {
+        "id": "b086457c.3f3bd8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f6eb4c6a.b1f9c",
+        "type": "ibmiot in",
+        "z": "b086457c.3f3bd8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "001",
+        "applicationId": "",
+        "deviceType": "ESP32",
+        "eventType": "+",
+        "commandType": "+",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 210,
+        "y": 700,
+        "wires": [
+            [
+                "c19c9b80.906708",
+                "c93e29ba.38e958",
+                "21e8bb59.7614f4",
+                "b9e01302.daaef",
+                "a0f37ecf.4d8fd",
+                "ebbd93e5.72278",
+                "7997e466.38c1bc",
+                "7253663a.0cf808",
+                "dfd54330.07fd",
+                "80900589.90b888",
+                "a127f0a9.2802",
+                "c2af0cc2.dca4f",
+                "4e7fe8d3.6a5ee8",
+                "98ea1d68.88f9a",
+                "7032f188.b7fa8",
+                "23b681d2.d1684e",
+                "52ff3bdd.ca1084",
+                "6f184f6e.020a"
+            ]
+        ]
+    },
+    {
+        "id": "b890992b.7ff728",
+        "type": "ui_gauge",
+        "z": "b086457c.3f3bd8",
+        "name": "Umidade do ar",
+        "group": "d4632e4d.52fbc",
+        "order": 5,
+        "width": "5",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Umidade do ar",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00ccff",
+            "#0062ff",
+            "#0010f0"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1560,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7ce575f.e90808c",
+        "type": "ui_gauge",
+        "z": "b086457c.3f3bd8",
+        "name": "Temperatura",
+        "group": "d4632e4d.52fbc",
+        "order": 6,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#5ca3ff",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 890,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c19c9b80.906708",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.umidade};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1140,
+        "y": 320,
+        "wires": [
+            [
+                "853e4f18.8e155"
+            ]
+        ]
+    },
+    {
+        "id": "853e4f18.8e155",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1330,
+        "y": 320,
+        "wires": [
+            [
+                "b890992b.7ff728",
+                "7d0fe75b.d62968"
+            ]
+        ]
+    },
+    {
+        "id": "c93e29ba.38e958",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.temperatura};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 380,
+        "wires": [
+            [
+                "133d2e9c.285d61"
+            ]
+        ]
+    },
+    {
+        "id": "133d2e9c.285d61",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 670,
+        "y": 380,
+        "wires": [
+            [
+                "7ce575f.e90808c",
+                "264f51d8.236e3e"
+            ]
+        ]
+    },
+    {
+        "id": "21e8bb59.7614f4",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.uv};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1080,
+        "y": 440,
+        "wires": [
+            [
+                "7f605365.6d93ac"
+            ]
+        ]
+    },
+    {
+        "id": "e02763e0.86304",
+        "type": "ui_chart",
+        "z": "b086457c.3f3bd8",
+        "name": "Intensidade de raios UV",
+        "group": "8294bb8.8104e48",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "label": "Intensidade de raios UV (mW/cm²)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1550,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f605365.6d93ac",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1290,
+        "y": 440,
+        "wires": [
+            [
+                "e02763e0.86304",
+                "5c0ea982.1a6db8"
+            ]
+        ]
+    },
+    {
+        "id": "b9e01302.daaef",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.tempMedia};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 500,
+        "wires": [
+            [
+                "744516b1.195008"
+            ]
+        ]
+    },
+    {
+        "id": "a0f37ecf.4d8fd",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.umidMedia};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 580,
+        "wires": [
+            [
+                "289685df.02353a"
+            ]
+        ]
+    },
+    {
+        "id": "ebbd93e5.72278",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.uvDia};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1060,
+        "y": 540,
+        "wires": [
+            [
+                "edf941d3.8b729"
+            ]
+        ]
+    },
+    {
+        "id": "7997e466.38c1bc",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.eto};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 680,
+        "wires": [
+            [
+                "b0ab3b4e.80bf88"
+            ]
+        ]
+    },
+    {
+        "id": "58d34ab5.4da994",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Temperatura média",
+        "label": "Temperatura média:",
+        "format": "{{msg.payload}} ºC",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "744516b1.195008",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 670,
+        "y": 500,
+        "wires": [
+            [
+                "58d34ab5.4da994"
+            ]
+        ]
+    },
+    {
+        "id": "273c1607.20a81a",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Umidade média",
+        "label": "Umidade média:",
+        "format": "{{msg.payload}}%",
+        "layout": "row-spread",
+        "x": 920,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "289685df.02353a",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 670,
+        "y": 580,
+        "wires": [
+            [
+                "273c1607.20a81a"
+            ]
+        ]
+    },
+    {
+        "id": "8c785f24.37428",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Intensidade luminosa do dia",
+        "label": "Intensidade luminosa total (dia anterior):",
+        "format": "{{msg.payload}} MJ/(m².dia)",
+        "layout": "row-spread",
+        "x": 1540,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "edf941d3.8b729",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1290,
+        "y": 540,
+        "wires": [
+            [
+                "8c785f24.37428"
+            ]
+        ]
+    },
+    {
+        "id": "b0ab3b4e.80bf88",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 710,
+        "y": 680,
+        "wires": [
+            [
+                "d6734875.759248"
+            ]
+        ]
+    },
+    {
+        "id": "d6734875.759248",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "ETo",
+        "label": "Evapotranspiração de referência (ETo):",
+        "format": "{{msg.payload}} mm/dia",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "264f51d8.236e3e",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "9e7b5704.243b98",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Temperatura",
+        "label": "Temperatura:",
+        "format": "{{msg.payload}} ºC",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 400,
+        "wires": [],
+        "inputLabels": [
+            "Temperatura"
+        ]
+    },
+    {
+        "id": "7253663a.0cf808",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.pressao};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 900,
+        "y": 220,
+        "wires": [
+            [
+                "fee76294.62c12"
+            ]
+        ]
+    },
+    {
+        "id": "dfd54330.07fd",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.altitude};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "c08a16ab.1e98d8"
+            ]
+        ]
+    },
+    {
+        "id": "6b02af8d.9eb62",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "9e7b5704.243b98",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Pressão atmosférica",
+        "label": "Pressão atmosférica:",
+        "format": "{{msg.payload}} KPa",
+        "layout": "row-spread",
+        "x": 1380,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fee76294.62c12",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1110,
+        "y": 220,
+        "wires": [
+            [
+                "6b02af8d.9eb62"
+            ]
+        ]
+    },
+    {
+        "id": "c08a16ab.1e98d8",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "514aa2de.fe491c"
+            ]
+        ]
+    },
+    {
+        "id": "514aa2de.fe491c",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "9e7b5704.243b98",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Altitude aproximada",
+        "label": "Altitude aproximada:",
+        "format": "{{msg.payload}} m",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5c0ea982.1a6db8",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "9e7b5704.243b98",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "name": "Intensidade de raios UV",
+        "label": "Intensidade de raios UV:",
+        "format": "{{msg.payload}} mW/cm²",
+        "layout": "row-spread",
+        "x": 1550,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7d0fe75b.d62968",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "9e7b5704.243b98",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Umidade do ar",
+        "label": "Umidade do ar:",
+        "format": "{{msg.payload}}%",
+        "layout": "row-spread",
+        "x": 1560,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9476fb4c.0e3868",
+        "type": "cloudant out",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "cloudant": "603d6e56.e804d",
+        "database": "dbest_test",
+        "service": "node-red-estacao-met-cloudant-1598888045045-119",
+        "payonly": true,
+        "operation": "insert",
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "80900589.90b888",
+        "type": "debug",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a127f0a9.2802",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.kc};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1060,
+        "y": 740,
+        "wires": [
+            [
+                "5dba265b.62b908"
+            ]
+        ]
+    },
+    {
+        "id": "d1fdd732.0e5148",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Kc",
+        "label": "Coeficiente da cultura (Kc):",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1550,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5dba265b.62b908",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1310,
+        "y": 740,
+        "wires": [
+            [
+                "d1fdd732.0e5148"
+            ]
+        ]
+    },
+    {
+        "id": "c2af0cc2.dca4f",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.etc};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 800,
+        "wires": [
+            [
+                "190d8c63.9b42d4"
+            ]
+        ]
+    },
+    {
+        "id": "eaf8bc82.3a8ae",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "ETc",
+        "label": "Evapotranspiração da cultura (ETc):",
+        "format": "{{msg.payload}} mm/dia",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "190d8c63.9b42d4",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "eaf8bc82.3a8ae",
+                "c7aed668.ef9008"
+            ]
+        ]
+    },
+    {
+        "id": "c7aed668.ef9008",
+        "type": "ui_chart",
+        "z": "b086457c.3f3bd8",
+        "name": "Evapotranspiração da cultura",
+        "group": "16acc68e.ea7059",
+        "order": 0,
+        "width": "8",
+        "height": "5",
+        "label": "Evapotranspiração da cultura (mm/dia)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "Y-M-D",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff",
+            "#1100ff"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 960,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e7fe8d3.6a5ee8",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.etca};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1160,
+        "y": 900,
+        "wires": [
+            [
+                "fac58d92.1964a"
+            ]
+        ]
+    },
+    {
+        "id": "7db069a7.077858",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "ETca",
+        "label": "ETc acumulada (ETca):",
+        "format": "{{msg.payload}} mm",
+        "layout": "row-spread",
+        "x": 1650,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "fac58d92.1964a",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1410,
+        "y": 900,
+        "wires": [
+            [
+                "7db069a7.077858"
+            ]
+        ]
+    },
+    {
+        "id": "98ea1d68.88f9a",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "Umidade solo",
+        "func": "return {payload:msg.payload.d.umidSolo};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 1040,
+        "wires": [
+            [
+                "6593afec.9ca94"
+            ]
+        ]
+    },
+    {
+        "id": "b78e533.fa353b",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "UmiSolo",
+        "label": "Umidade do solo ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 940,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "6593afec.9ca94",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 710,
+        "y": 1040,
+        "wires": [
+            [
+                "b78e533.fa353b"
+            ]
+        ]
+    },
+    {
+        "id": "7032f188.b7fa8",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "Irrigar?",
+        "func": "return {payload:msg.payload.d.irrig};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 960,
+        "wires": [
+            [
+                "729ed120.a81a7"
+            ]
+        ]
+    },
+    {
+        "id": "36f73139.d16dbe",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "16acc68e.ea7059",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Irrigar",
+        "label": "Estado: ",
+        "format": "{{msg.payload}} Irrigar.",
+        "layout": "row-spread",
+        "x": 1070,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "729ed120.a81a7",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 810,
+        "y": 960,
+        "wires": [
+            [
+                "36f73139.d16dbe"
+            ]
+        ]
+    },
+    {
+        "id": "c794377c.8ac938",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "3c84e555.55119a",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "name": "Data",
+        "label": "Data da última leitura:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 930,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "23b681d2.d1684e",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "\nreturn {payload:msg.payload.d.data};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 1100,
+        "wires": [
+            [
+                "f09217c3.9b9ad8"
+            ]
+        ]
+    },
+    {
+        "id": "52ff3bdd.ca1084",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "return {payload:msg.payload.d.num};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1120,
+        "y": 1020,
+        "wires": [
+            [
+                "88dd14ab.48f738"
+            ]
+        ]
+    },
+    {
+        "id": "8f4aaba5.786738",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "3c84e555.55119a",
+        "order": 5,
+        "width": "5",
+        "height": "1",
+        "name": "Número de leituras (dia)",
+        "label": "Número de leituras (dia): ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1590,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "88dd14ab.48f738",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 1320,
+        "y": 1020,
+        "wires": [
+            [
+                "8f4aaba5.786738"
+            ]
+        ]
+    },
+    {
+        "id": "955cd526.0176a8",
+        "type": "ui_text",
+        "z": "b086457c.3f3bd8",
+        "group": "3c84e555.55119a",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "name": "Autor",
+        "label": "Autor: ",
+        "format": "Pedro Josefino C. de Araújo",
+        "layout": "row-spread",
+        "x": 1550,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "6f184f6e.020a",
+        "type": "function",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "msg.payload.NumeroDeLeituras = msg.payload.d.num;\nmsg.payload.Data = msg.payload.d.data;\nmsg.payload.Temperatura = msg.payload.d.temperatura;\nmsg.payload.Umidade = msg.payload.d.umidade;\nmsg.payload.Pressao = msg.payload.d.pressao;\nmsg.payload.Altitude = msg.payload.d.altitude;\nmsg.payload.uvIncidente = msg.payload.d.uv;\nmsg.payload.UmidadeDoSolo = msg.payload.d.umidSolo;\nmsg.payload.TemperaturaMedia = msg.payload.d.tempMedia;\nmsg.payload.UmidadeMedia = msg.payload.d.umidMedia;\nmsg.payload.uvTotalDia = msg.payload.d.uvDia;\nmsg.payload.ETo = msg.payload.d.eto;\nmsg.payload.Kc = msg.payload.d.kc;\nmsg.payload.ETc = msg.payload.d.etc;\nmsg.payload.ETca = msg.payload.d.etca;\nmsg.payload.Irrigar = msg.payload.d.irrig;\nmsg.payload.d = \"\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "9476fb4c.0e3868"
+            ]
+        ]
+    },
+    {
+        "id": "f09217c3.9b9ad8",
+        "type": "rbe",
+        "z": "b086457c.3f3bd8",
+        "name": "",
+        "func": "rbe",
+        "gap": "0",
+        "start": "0",
+        "inout": "in",
+        "property": "payload",
+        "x": 750,
+        "y": 1100,
+        "wires": [
+            [
+                "c794377c.8ac938"
+            ]
+        ]
+    },
+    {
+        "id": "d4632e4d.52fbc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Análise gráfica",
+        "tab": "37753381.58e8fc",
+        "order": 5,
+        "disp": true,
+        "width": "11",
+        "collapse": false
+    },
+    {
+        "id": "8294bb8.8104e48",
+        "type": "ui_group",
+        "z": "",
+        "name": "",
+        "tab": "37753381.58e8fc",
+        "order": 8,
+        "disp": true,
+        "width": "11",
+        "collapse": false
+    },
+    {
+        "id": "16acc68e.ea7059",
+        "type": "ui_group",
+        "z": "",
+        "name": "Dados Diários para a Irrigação do Milho",
+        "tab": "37753381.58e8fc",
+        "order": 6,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "9e7b5704.243b98",
+        "type": "ui_group",
+        "z": "",
+        "name": "Dados físicos",
+        "tab": "37753381.58e8fc",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "603d6e56.e804d",
+        "type": "cloudant",
+        "z": "",
+        "host": "67a69862-61c9-4a14-bd73-b211403a75c0-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "dbEstac"
+    },
+    {
+        "id": "3c84e555.55119a",
+        "type": "ui_group",
+        "z": "",
+        "name": "Outras Informações",
+        "tab": "37753381.58e8fc",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "37753381.58e8fc",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Estação Meteorológica IoT para Manejo de Irrigação",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
